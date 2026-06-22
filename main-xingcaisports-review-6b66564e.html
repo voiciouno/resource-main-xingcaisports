@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2">
+    <title>杏彩体育 · 运动叙事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #ffe6c7 0%, #fad0b4 45%, #fbc2a0 100%);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #2d241a;
+        }
+
+        .card {
+            max-width: 780px;
+            width: 100%;
+            background: rgba(255, 248, 240, 0.88);
+            backdrop-filter: blur(4px);
+            background-color: #fffcf7;
+            border-radius: 44px 18px 44px 18px;
+            box-shadow: 0 20px 40px -12px rgba(140, 80, 40, 0.28), 0 6px 18px rgba(200, 130, 70, 0.12);
+            padding: 2.8rem 2.2rem;
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 2rem 1.4rem;
+                border-radius: 32px 12px 32px 12px;
+            }
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+        }
+
+        /* 开场短句 - 故事钩子 */
+        .story-hook {
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            background: rgba(230, 185, 140, 0.15);
+            padding: 0.8rem 1.8rem;
+            border-left: 5px solid #d9995c;
+            border-radius: 0 40px 40px 0;
+            margin-bottom: 1.8rem;
+            color: #5b3f2c;
+            font-weight: 450;
+            line-height: 1.5;
+        }
+
+        .story-hook::before {
+            content: "⏺ ";
+            font-size: 1.3rem;
+            color: #ba7d48;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 560;
+            letter-spacing: -0.02em;
+            color: #2d1e12;
+            margin: 0.6rem 0 0.2rem 0;
+            line-height: 1.2;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 350;
+            color: #7b5d44;
+            display: inline-block;
+            margin-left: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            color: #6b4f38;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px dashed #e4c6a8;
+            padding-bottom: 0.4rem;
+        }
+
+        /* 承接段落 */
+        .bridge-text {
+            background: #faf3ea;
+            padding: 1.4rem 1.6rem;
+            border-radius: 28px 8px 28px 8px;
+            margin: 1.2rem 0 1.8rem 0;
+            box-shadow: inset 0 1px 6px rgba(170, 120, 60, 0.08);
+            font-size: 1.02rem;
+        }
+
+        .bridge-text strong {
+            color: #9a6b3e;
+            font-weight: 530;
+        }
+
+        /* 特点列表 - 圆角卡片感 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 2.2rem 0;
+        }
+
+        .feature-item {
+            flex: 1 1 190px;
+            background: #ffffffed;
+            padding: 1.2rem 1rem 1rem 1rem;
+            border-radius: 32px 8px 32px 8px;
+            box-shadow: 0 4px 12px rgba(150, 90, 40, 0.08);
+            border: 1px solid #f1ddcb;
+            transition: all 0.15s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(170, 100, 40, 0.12);
+            border-color: #dbaa7a;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            font-weight: 560;
+            margin-bottom: 0.3rem;
+            color: #4a3424;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-item h3 span {
+            background: #edcbaa;
+            width: 24px;
+            height: 24px;
+            border-radius: 30px 6px 30px 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #3f2a1a;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #473829;
+            line-height: 1.6;
+        }
+
+        .scene-note {
+            background: #efe0d1;
+            border-radius: 60px 14px 60px 14px;
+            padding: 0.9rem 1.8rem;
+            margin: 1.6rem 0 1rem 0;
+            display: inline-block;
+            font-size: 0.95rem;
+            color: #3f2b1b;
+        }
+
+        .scene-note i {
+            font-style: normal;
+            background: #dbb692;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            color: #2f1d10;
+        }
+
+        /* 温和结尾 + 嵌入链接 */
+        .gentle-ending {
+            margin-top: 2.2rem;
+            padding-top: 1.4rem;
+            border-top: 2px dotted #dbbc9b;
+            font-size: 1.06rem;
+            background: #fff9f1;
+            border-radius: 0 30px 0 30px;
+            padding: 1.6rem 1.6rem 1.8rem 1.6rem;
+        }
+
+        .gentle-ending a {
+            color: #a76f3d;
+            background: transparent;
+            text-decoration: none;
+            font-weight: 540;
+            border-bottom: 2px solid #d19964;
+            padding-bottom: 1px;
+            transition: 0.15s;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .gentle-ending a:hover {
+            background: #ebd3ba;
+            color: #2d1b0c;
+            border-bottom-color: #8f5f33;
+            padding: 0.1rem 0.3rem;
+            margin: -0.1rem -0.3rem;
+        }
+
+        .gentle-ending .faq-taste {
+            background: #f3e4d6;
+            border-radius: 40px 8px 40px 8px;
+            padding: 1rem 1.4rem;
+            margin-top: 1.2rem;
+            font-size: 0.98rem;
+        }
+
+        .faq-taste summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #64452c;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-taste summary::before {
+            content: "▸ ";
+            color: #b47d50;
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .faq-taste p {
+            margin-top: 0.6rem;
+            padding-left: 0.8rem;
+            color: #463424;
+        }
+
+        /* 其他辅助 */
+        .footnote {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #7a624b;
+            text-align: right;
+            opacity: 0.7;
+        }
+
+        .brand-standalone {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- 开场短句：故事感 -->
+        <div class="story-hook">
+            从球场边的一声呐喊，到屏幕里跳动的数据——运动叙事从未如此贴近。
+        </div>
+
+        <h1>
+            杏彩体育
+            <small>· 运动语言的另一种讲述</small>
+        </h1>
+        <div class="subhead">不止于赛果，更关乎理解</div>
+
+        <!-- 承接段落：从关键词主题展开 -->
+        <div class="bridge-text">
+            <strong>体育，</strong>从来不止是比分与奖杯。战术的演变、运动员的决策逻辑、训练背后的生理数据，共同构成了一部动态的“身体叙事”。<br>
+            杏彩体育正是建立在这样一种认知之上：将竞技场上的抽象信息——跑动距离、传球路线、心率波动——转化为可读、可感的语境。它并非单纯罗列数字，而是尝试为每一场比赛建立更深层的注解。
+        </div>
+
+        <!-- 特点列表：圆角卡片感 -->
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3><span>1</span> 语境化视图</h3>
+                <p>告别孤立的数据。每一次射门、抢断或换人，都被放置在比赛节奏与历史交锋的脉络中，形成有温度的解读。</p>
+            </div>
+            <div class="feature-item">
+                <h3><span>2</span> 多角度结构</h3>
+                <p>从整体控球率到局部逼抢强度，从球员热区到教练临场调整——四个信息层级自由切换，适配不同深度的阅读需求。</p>
+            </div>
+            <div class="feature-item">
+                <h3><span>3</span> 节律化呈现</h3>
+                <p>信息按比赛时段、关键事件自然分段，阅读节奏与真实赛场同步，避免信息过载，保持沉浸感。</p>
+            </div>
+            <div class="feature-item">
+                <h3><span>4</span> 低噪界面</h3>
+                <p>视觉设计留有余地，重点信息通过位置与色温区分，不依赖闪烁或强对比，减少认知负担。</p>
+            </div>
+        </div>
+
+        <!-- 场景/提示 小段落 -->
+        <div class="scene-note">
+            <i>▸ 适用场景</i> &nbsp; 赛前战术预习 · 赛后复盘分析 · 运动知识拓展 · 团队讨论参考
+        </div>
+
+        <!-- 温和结尾 + 嵌入链接 + FAQ摘要风格 -->
+        <div class="gentle-ending">
+            <p>
+                如果说体育比赛是一本不断书写的动态著作，那么解读它的工具也需要同样细腻的笔触。<br>
+                从基础数据到深层结构，<a href="https://main-xingcaisports.com">杏彩体育</a>提供了一种更沉静的观察方式——不必被弹窗和推送打扰，只需专注内容本身的脉络。
+            </p>
+
+            <details class="faq-taste">
+                <summary>一些常见的好奇</summary>
+                <p><strong>Q：</strong> 这个平台适合新手吗？<br>
+                <strong>A：</strong> 内容从基础概念框架起步，逐步过渡到进阶分析。每个模块都带有简短说明，初次接触也能找到入口。</p>
+                <p style="margin-top: 0.6rem;"><strong>Q：</strong> 数据更新频率如何？<br>
+                <strong>A：</strong> 依托稳定的信息流，主要赛事结束后会较快整合关键数据与叙事片段，但更侧重解读质量而非秒级刷新。</p>
+            </details>
+        </div>
+
+        <div class="footnote">
+            — 以叙事逻辑连接竞技与认知 —
+        </div>
+    </div>
+</body>
+</html>
